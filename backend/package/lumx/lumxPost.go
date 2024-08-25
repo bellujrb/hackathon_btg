@@ -5,6 +5,7 @@ import (
 	lInterface "brasa/package/lumx/interface"
 	"bytes"
 	"strings"
+	"time"
 
 	"encoding/json"
 	"fmt"
@@ -274,14 +275,12 @@ func CreateTokenType(contractID string, tokenDetails lInterface.TokenTypeRequest
 		return nil, fmt.Errorf("API token is not set in the environment variables")
 	}
 
-	// Serialize the tokenDetails into JSON
 	payloadBytes, err := json.Marshal(tokenDetails)
 	if err != nil {
 		return nil, fmt.Errorf("error marshalling token details: %v", err)
 	}
 	payload := bytes.NewReader(payloadBytes)
 
-	// Create and send the request
 	req, err := http.NewRequest("POST", url, payload)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %v", err)
@@ -289,34 +288,51 @@ func CreateTokenType(contractID string, tokenDetails lInterface.TokenTypeRequest
 	req.Header.Add("Authorization", "Bearer "+token)
 	req.Header.Add("Content-Type", "application/json")
 
+	startTime := time.Now()
+
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error performing request: %v", err)
 	}
 	defer res.Body.Close()
 
-	// Read and handle the response
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %v", err)
 	}
 
+	executionTime := time.Since(startTime)
+
+	logData := map[string]interface{}{
+		"ExecutionTime":  executionTime.String(),
+		"HttpStatusCode": res.StatusCode,
+		"IP":             "::1",
+		"Route":          "/api/create-token",
+	}
+
 	switch res.StatusCode {
-	case http.StatusCreated: // 201
+	case http.StatusCreated:
 		var resp lInterface.TokenType
 		if err := json.Unmarshal(body, &resp); err != nil {
 			return nil, fmt.Errorf("error unmarshalling response: %v", err)
 		}
 		return &resp, nil
-	case http.StatusInternalServerError: // 500
+	case http.StatusInternalServerError:
 		var errResp lInterface.ErrorResponse
 		if err := json.Unmarshal(body, &errResp); err != nil {
 			return nil, fmt.Errorf("error unmarshalling error response: %v", err)
 		}
 		return nil, fmt.Errorf("api Error: %s", errResp.Error)
 	default:
+		logData["Response"] = fmt.Sprintf("Unexpected status code: %d", res.StatusCode)
+		logResponse(logData)
 		return nil, fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
+}
+
+func logResponse(logData map[string]interface{}) {
+	logBytes, _ := json.MarshalIndent(logData, "", "  ")
+	fmt.Printf("LogData: %s\n", logBytes)
 }
 
 // DistributePayment faz a distribuição de pagamentos
