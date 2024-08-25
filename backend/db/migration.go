@@ -31,6 +31,8 @@ type Token struct {
 	ExpireDate   string    `gorm:"column:expireDate" json:"expireDate"`
 	NominalValue float64   `gorm:"column:nominal_value" json:"nominal_value"`
 	Guarantees   string    `gorm:"column:guarantees" json:"guarantees"`
+	Quantity     int       `gorm:"column:quantity" json:"quantity"`
+	InvestorID   string    `gorm:"column:investor_id" json:"investor_id"`
 	CreatedAt    time.Time `gorm:"column:create_at;not null" json:"create_at"`
 	UpdatedAt    time.Time `gorm:"column:update_at;not null" json:"update_at"`
 }
@@ -53,4 +55,18 @@ type Receivable struct {
 	Agencia              string  `json:"agencia"`
 	ContaCorrente        string  `json:"conta_corrente"`
 	ChavePix             string  `json:"chave_pix"`
+}
+
+type Contract struct {
+	ContractID  string    `gorm:"primaryKey"`
+	Paid        bool      `gorm:"default:false"`
+	PaymentDate time.Time `gorm:"default:null"`
+	TotalTokens int
+}
+
+type Distribution struct {
+	ID         uint   `gorm:"primaryKey"`
+	InvestorID string `gorm:"index"`
+	Amount     float64
+	ContractID string `gorm:"index"`
 }

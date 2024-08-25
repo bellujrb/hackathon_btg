@@ -44,4 +44,6 @@ func Migrate(db *gorm.DB) {
 	db.AutoMigrate(&User{})
 	db.AutoMigrate(&Login{})
 	db.AutoMigrate(&Receivable{})
+	db.AutoMigrate(&Contract{})
+	db.AutoMigrate(&Distribution{})
 }
