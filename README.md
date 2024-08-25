@@ -1,3 +1,7 @@
+Aqui está o seu README atualizado com as informações sobre a tokenização e o contrato:
+
+---
+
 ## Hackathon BTG (BrasaHacks)
 
 <div align="center">
@@ -23,19 +27,60 @@
 > _Prototyping: 
 
 > _Video Demo Application and API:
+
 ---
 
 ## 🌐 Introduction
 
-????
+A LUMQI tokenizes receivables using the Polygon blockchain and integrates 100% with the Lumx API, which manages all blockchain operations in the backend. Our goal is to democratize access to the capital markets by simplifying investments in tokenized receivables.
+
+## Link Contract
+https://amoy.polygonscan.com/address/0xf37C923B98d931fff26E944F65113a1f8F66BBF7
+
+## Tokenization Project
+
+```json
+{
+  "id": "36defbb5-ec8f-4f30-88c5-21cda524218a",
+  "name": "BTG Hacks",
+  "blockchain": {
+    "name": "Polygon",
+    "decimalChainId": 80002
+  },
+  "createdAt": "2024-08-25T23:01:45.268Z",
+  "updatedAt": "2024-08-25T23:01:45.268Z",
+  "apiKey": "secret"
+}
+```
+
+---
+
+## Contract Information
+
+```json
+{
+  "id": "2514cce9-3ad3-475c-9513-070dedf30ff6",
+  "address": "0xf37C923B98d931fff26E944F65113a1f8F66BBF7",
+  "type": "fungible",
+  "name": "BTG Credit 1",
+  "symbol": "BTG1",
+  "description": "Recebivel",
+  "blockchainName": "Polygon",
+  "blockExplorerUrl": "https://amoy.polygonscan.com/address/0xf37C923B98d931fff26E944F65113a1f8F66BBF7",
+  "baseUri": "https://storage.googleapis.com/lumx-nft-data-tmp/36defbb5-ec8f-4f30-88c5-21cda524218a/2514cce9-3ad3-475c-9513-070dedf30ff6/",
+  "createdAt": "2024-08-25T23:02:28.614Z",
+  "deployedAt": "2024-08-25T23:06:39.976Z",
+  "updatedAt": "2024-08-25T23:06:39.978Z"
+}
+```
 
 ## Application Programming Interface Lumx
 
-We use 100% of the Lumx API to do the entire Blockchain application in our API.
+We use 100% of the Lumx API to perform all blockchain-related functions within our application.
 
 ## Mocks in Web
 
-Due to lack of time, we decided to leave some mocked things on the website, but our back-end is 100% functional and you can test it yourself on Swagger.
+Due to time constraints, some features are mocked on the website, but the backend is fully functional and you can test it yourself via Swagger.
 
 ---
 
@@ -152,3 +197,5 @@ hackathon_btg
 Special thanks to BTG and Brasa for this ambitious opportunity.
 
 ---
+
+Espero que isso atenda às suas expectativas!
