@@ -1,7 +1,3 @@
-Aqui está o seu README atualizado com as informações sobre a tokenização e o contrato:
-
----
-
 ## Hackathon BTG (BrasaHacks)
 
 <div align="center">
@@ -24,7 +20,7 @@ Aqui está o seu README atualizado com as informações sobre a tokenização e 
 
 > _Documentation PROJECT:
 > 
-> _Prototyping: 
+> _Prototyping: https://www.figma.com/design/imspxcdxenZWKVmady3MPz/BrasaHacks---UI%2FUX?node-id=37-770&t=029wiMmdBkYynDVu-1
 
 > _Video Demo Application and API:
 
@@ -34,7 +30,13 @@ Aqui está o seu README atualizado com as informações sobre a tokenização e 
 
 A LUMQI tokenizes receivables using the Polygon blockchain and integrates 100% with the Lumx API, which manages all blockchain operations in the backend. Our goal is to democratize access to the capital markets by simplifying investments in tokenized receivables.
 
+
+## Application Programming Interface Lumx
+
+We use 100% of the Lumx API to perform all blockchain-related functions within our application.
+
 ## Link Contract
+
 https://amoy.polygonscan.com/address/0xf37C923B98d931fff26E944F65113a1f8F66BBF7
 
 ## Tokenization Project
@@ -73,10 +75,6 @@ https://amoy.polygonscan.com/address/0xf37C923B98d931fff26E944F65113a1f8F66BBF7
   "updatedAt": "2024-08-25T23:06:39.978Z"
 }
 ```
-
-## Application Programming Interface Lumx
-
-We use 100% of the Lumx API to perform all blockchain-related functions within our application.
 
 ## Mocks in Web
 
@@ -197,5 +195,3 @@ hackathon_btg
 Special thanks to BTG and Brasa for this ambitious opportunity.
 
 ---
-
-Espero que isso atenda às suas expectativas!
