@@ -31,7 +31,6 @@ func CreateToken(c *gin.Context, input inter.TokenCreateInput) {
 		return
 	}
 
-	// Salvar no banco de dados
 	inputDB := inter.SaveToken{
 		UriNumber:    uint64(res.UriNumber),
 		ContractID:   res.ContractID,
@@ -79,7 +78,6 @@ func GetAllToken(c *gin.Context, ContractId string) {
 }
 
 func DistributePayments(c *gin.Context, ContractId string) {
-	// Obter todos os tokens emitidos para o contrato
 	tokens, err := storage.GetAllTokensDb(db.Repo, ContractId)
 	if err != nil {
 		c.Set("Error", "Erro ao buscar tokens")
@@ -87,7 +85,6 @@ func DistributePayments(c *gin.Context, ContractId string) {
 		return
 	}
 
-	// Simular pagamento proporcional
 	for _, token := range tokens {
 		paymentAmount := calculatePayment(token.UriNumber, token.ContractID)
 		err := lumx.DistributePayment(token.ContractID, paymentAmount)

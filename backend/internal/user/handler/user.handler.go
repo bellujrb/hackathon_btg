@@ -14,7 +14,6 @@ import (
 // @Accept json
 // @Produce json
 // @Param request body inter.UserController true "Data for make a new user"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New User Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to store data in database"
 // @Router /create-user [post]
@@ -34,7 +33,6 @@ func CreateUser(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param request body inter.ContractController true "Data for make a new contract"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New Contract Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Error for make a new contract"
 // @Router /api/create-contract [post]
@@ -54,7 +52,6 @@ func CreateContract(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param request body inter.DeployController true "ContractId for deploy a new contract"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.ContractDeploymentResponse "Deploy its a sucessfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to make deploy"
 // @Router /api/deploy-contract [post]
@@ -74,7 +71,6 @@ func DeployContract(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param ContractId header string true  "contract Id"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New User Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to store data in database"
 // @Router /api/contract [get]
@@ -88,7 +84,6 @@ func PullContract(c *gin.Context) {
 // @Tags Contract
 // @Accept json
 // @Produce json
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New User Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to store data in database"
 // @Router /api/all-contract [get]
@@ -102,7 +97,6 @@ func PullAllContract(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param Email header string true  "E-mail from user"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New User Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to store data in database"
 // @Router /api/user [get]
@@ -117,7 +111,6 @@ func PullUser(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param Email header string true  "E-mail from user"
-// @Param Authorization header string true "Token de autenticação (Colocar o token deixando o Bearer)" default(Bearer <token>)
 // @Success 200 {object} inter.UserOutputController "New User Created successfully"
 // @Failure 500 {object} errors.InternalServerError "Unable to store data in database"
 // @Router /api/loggout [put]

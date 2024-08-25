@@ -15,45 +15,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/all-company": {
-            "get": {
-                "description": "Get all company register in db",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Get all company",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "One item for a company",
-                        "schema": {
-                            "$ref": "#/definitions/inter.MktItemOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to make deploy",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
         "/api/all-contract": {
             "get": {
                 "description": "Get All contracts",
@@ -67,16 +28,6 @@ const docTemplate = `{
                     "Contract"
                 ],
                 "summary": "Get All contracts",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "New User Created successfully",
@@ -86,52 +37,6 @@ const docTemplate = `{
                     },
                     "500": {
                         "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/all-items": {
-            "get": {
-                "description": "Get all items for one company",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Get All Items",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Company name",
-                        "name": "Company",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "All items for one company",
-                        "schema": {
-                            "$ref": "#/definitions/inter.MktItemsOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to make deploy",
                         "schema": {
                             "$ref": "#/definitions/erros.InternalServerError"
                         }
@@ -157,14 +62,6 @@ const docTemplate = `{
                         "type": "string",
                         "description": "contract id",
                         "name": "ContractId",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
                         "in": "header",
                         "required": true
                     }
@@ -205,14 +102,6 @@ const docTemplate = `{
                         "name": "ContractId",
                         "in": "header",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -224,100 +113,6 @@ const docTemplate = `{
                     },
                     "500": {
                         "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/converter-token": {
-            "get": {
-                "description": "Converter tokens for money or another tokens",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Token"
-                ],
-                "summary": "Converter tokens",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Your tokens",
-                        "name": "Token",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New User Created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/inter.AllTokensOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/create-company": {
-            "post": {
-                "description": "Create a new Company",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Create Company",
-                "parameters": [
-                    {
-                        "description": "Data for make a new Company",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/inter.CreateCompanyController"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New Company Created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/inter.UserOutputController"
-                        }
-                    },
-                    "500": {
-                        "description": "Error for make a new Company",
                         "schema": {
                             "$ref": "#/definitions/erros.InternalServerError"
                         }
@@ -347,14 +142,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/inter.ContractController"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -395,14 +182,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/inter.TokenCreateInput"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -443,14 +222,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/inter.DeployController"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -462,54 +233,6 @@ const docTemplate = `{
                     },
                     "500": {
                         "description": "Unable to make deploy",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/gain-tokens": {
-            "post": {
-                "description": "This would be implemented as the application remains open. RoadMap is mocked, and this randomly generates a number, and gives an FDZ that can be 0.000001 or 1",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Token"
-                ],
-                "summary": "Gain token",
-                "parameters": [
-                    {
-                        "description": "Data for gain tokens :)",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/inter.Gimmetoken"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Your tokens is be send for your account",
-                        "schema": {
-                            "$ref": "#/definitions/inter.TransactionRes"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to store data in database",
                         "schema": {
                             "$ref": "#/definitions/erros.InternalServerError"
                         }
@@ -542,14 +265,6 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Its a uri content in tokens",
                         "name": "UriToken",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
                         "in": "header",
                         "required": true
                     }
@@ -590,14 +305,6 @@ const docTemplate = `{
                         "name": "Email",
                         "in": "header",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -609,201 +316,6 @@ const docTemplate = `{
                     },
                     "500": {
                         "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/make-trade": {
-            "post": {
-                "description": "Create a transfer from a user to a new token",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Token"
-                ],
-                "summary": "Make a Trade",
-                "parameters": [
-                    {
-                        "description": "Data for make a new user",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/inter.Trade"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New User Created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/inter.UserOutputController"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/make-transfer": {
-            "post": {
-                "description": "Create a transfer from a user to a user",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Token"
-                ],
-                "summary": "Make a transfer",
-                "parameters": [
-                    {
-                        "description": "Data for make a new user",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/inter.Transaction"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Transfer is by sucessfull",
-                        "schema": {
-                            "$ref": "#/definitions/inter.TransferOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/one-company": {
-            "get": {
-                "description": "Deploy new contract in the blockchain",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Get one company",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Company name",
-                        "name": "Company",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "One item for a company",
-                        "schema": {
-                            "$ref": "#/definitions/inter.MktItemOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to make deploy",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/one-item": {
-            "get": {
-                "description": "Deploy new contract in the blockchain",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Get one item",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Company name",
-                        "name": "Company",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Item name",
-                        "name": "ItemName",
-                        "in": "header",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "One item for a company",
-                        "schema": {
-                            "$ref": "#/definitions/inter.MktItemOutput"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to make deploy",
                         "schema": {
                             "$ref": "#/definitions/erros.InternalServerError"
                         }
@@ -831,14 +343,6 @@ const docTemplate = `{
                         "name": "Email",
                         "in": "header",
                         "required": true
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -846,54 +350,6 @@ const docTemplate = `{
                         "description": "New User Created successfully",
                         "schema": {
                             "$ref": "#/definitions/inter.UserOutputController"
-                        }
-                    },
-                    "500": {
-                        "description": "Unable to store data in database",
-                        "schema": {
-                            "$ref": "#/definitions/erros.InternalServerError"
-                        }
-                    }
-                }
-            }
-        },
-        "/create-item": {
-            "post": {
-                "description": "Create a new item in db",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Mkt"
-                ],
-                "summary": "Create item",
-                "parameters": [
-                    {
-                        "description": "Data for make a new item",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/inter.CreateItemController"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New item Created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/inter.MktItemsOutput"
                         }
                     },
                     "500": {
@@ -927,14 +383,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/inter.UserController"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "default": "Bearer \u003ctoken\u003e",
-                        "description": "Token de autenticação (Colocar o token deixando o Bearer)",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -953,9 +401,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/login": {
-            "put": {
-                "description": "Login user and give a acess token",
+        "/receivables": {
+            "get": {
+                "description": "Returns all registered receivables",
                 "consumes": [
                     "application/json"
                 ],
@@ -963,37 +411,69 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Receivable"
                 ],
-                "summary": "Login User",
+                "summary": "Get all receivables",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/db.Receivable"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/receivable.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Creates a new receivable from the provided data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receivable"
+                ],
+                "summary": "Creates a new receivable",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "E-mail from user",
-                        "name": "Email",
-                        "in": "header",
-                        "required": true
+                        "description": "Receivable data",
+                        "name": "receivable",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/db.Receivable"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "token make:",
+                        "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/db.Receivable"
                         }
                     },
-                    "500": {
-                        "description": "User not found in db",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/receivable.ErrorResponse"
                         }
                     }
                 }
             }
         },
-        "/token": {
+        "/receivables/{id}": {
             "get": {
-                "description": "Creat a token for external apis",
+                "description": "Fetches a receivable by its ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1001,14 +481,114 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Auth"
+                    "Receivable"
                 ],
-                "summary": "Creat a token for apis",
+                "summary": "Get a receivable by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Receivable ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "token make:",
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/db.Receivable"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/receivable.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receivables/{id}/early_payment": {
+            "get": {
+                "description": "Returns options for anticipating the receivable's payment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receivable"
+                ],
+                "summary": "Fetches early payment options for a receivable",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Receivable ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/db.Receivable"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/receivable.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/receivables/{id}/payment_date": {
+            "put": {
+                "description": "Changes the payment date of the given receivable",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Receivable"
+                ],
+                "summary": "Updates the payment date of a receivable",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Receivable ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "New Payment Date",
+                        "name": "payment_date",
+                        "in": "body",
+                        "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/db.Receivable"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/receivable.ErrorResponse"
                         }
                     }
                 }
@@ -1048,6 +628,62 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "Response": {}
+            }
+        },
+        "db.Receivable": {
+            "type": "object",
+            "properties": {
+                "agencia": {
+                    "type": "string"
+                },
+                "banco": {
+                    "type": "string"
+                },
+                "chave_pix": {
+                    "type": "string"
+                },
+                "conta_corrente": {
+                    "type": "string"
+                },
+                "data_emissao_titulo": {
+                    "type": "string"
+                },
+                "data_vencimento_titulo": {
+                    "type": "string"
+                },
+                "desconto_antecipacao": {
+                    "type": "number"
+                },
+                "devedor_cnpj": {
+                    "type": "string"
+                },
+                "devedor_nome": {
+                    "type": "string"
+                },
+                "empresa_cnpj": {
+                    "type": "string"
+                },
+                "empresa_email": {
+                    "type": "string"
+                },
+                "empresa_endereco": {
+                    "type": "string"
+                },
+                "empresa_nome": {
+                    "type": "string"
+                },
+                "empresa_telefone": {
+                    "type": "string"
+                },
+                "garantias": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "valor": {
+                    "type": "number"
+                }
             }
         },
         "erros.InternalServerError": {
@@ -1136,43 +772,6 @@ const docTemplate = `{
                 }
             }
         },
-        "inter.CreateCompanyController": {
-            "type": "object",
-            "properties": {
-                "URI": {
-                    "type": "integer"
-                },
-                "cnpj": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "urlImage": {
-                    "type": "string"
-                }
-            }
-        },
-        "inter.CreateItemController": {
-            "type": "object",
-            "properties": {
-                "URI": {
-                    "type": "integer"
-                },
-                "company": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "urlImage": {
-                    "type": "string"
-                }
-            }
-        },
         "inter.DeployController": {
             "type": "object",
             "properties": {
@@ -1181,62 +780,27 @@ const docTemplate = `{
                 }
             }
         },
-        "inter.Gimmetoken": {
-            "type": "object",
-            "properties": {
-                "contractID": {
-                    "type": "string"
-                },
-                "quantity": {
-                    "type": "integer"
-                },
-                "uriNumber": {
-                    "type": "integer"
-                },
-                "walletID": {
-                    "type": "string"
-                }
-            }
-        },
-        "inter.MktItemOutput": {
-            "type": "object",
-            "properties": {
-                "company": {
-                    "type": "string"
-                },
-                "create_at": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "update_at": {
-                    "type": "string"
-                },
-                "uri": {
-                    "type": "integer"
-                },
-                "urlImage": {
-                    "type": "string"
-                }
-            }
-        },
-        "inter.MktItemsOutput": {
-            "type": "object"
-        },
         "inter.TokenCreateInput": {
             "type": "object",
             "properties": {
+                "assetId": {
+                    "description": "Adicionado AssetID",
+                    "type": "string"
+                },
+                "assetValue": {
+                    "type": "number"
+                },
                 "contractId": {
                     "type": "string"
                 },
                 "description": {
+                    "type": "string"
+                },
+                "expireDate": {
+                    "type": "string"
+                },
+                "guarantees": {
+                    "description": "Adicionado Guarantees",
                     "type": "string"
                 },
                 "imageUrl": {
@@ -1247,6 +811,10 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string"
+                },
+                "nominalValue": {
+                    "description": "Adicionado NominalValue",
+                    "type": "number"
                 },
                 "traits": {
                     "type": "object",
@@ -1300,129 +868,6 @@ const docTemplate = `{
                 }
             }
         },
-        "inter.Trade": {
-            "type": "object",
-            "properties": {
-                "transaction1": {
-                    "$ref": "#/definitions/inter.Transaction"
-                },
-                "transaction2": {
-                    "$ref": "#/definitions/inter.Transaction"
-                }
-            }
-        },
-        "inter.Transaction": {
-            "type": "object",
-            "properties": {
-                "contractId": {
-                    "type": "string"
-                },
-                "from": {
-                    "type": "string"
-                },
-                "quantity": {
-                    "type": "integer"
-                },
-                "to": {
-                    "type": "string"
-                }
-            }
-        },
-        "inter.TransactionRes": {
-            "type": "object",
-            "properties": {
-                "completedAt": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "request": {
-                    "type": "object",
-                    "properties": {
-                        "contractId": {
-                            "type": "string"
-                        },
-                        "quantity": {
-                            "type": "integer"
-                        }
-                    }
-                },
-                "result": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "status": {
-                    "type": "string"
-                },
-                "transactionHash": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "walletId": {
-                    "type": "string"
-                }
-            }
-        },
-        "inter.TransferOutput": {
-            "type": "object",
-            "properties": {
-                "completedAt": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "request": {
-                    "type": "object",
-                    "properties": {
-                        "contractId": {
-                            "type": "string"
-                        },
-                        "from": {
-                            "type": "string"
-                        },
-                        "quantity": {
-                            "type": "integer"
-                        },
-                        "to": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "result": {
-                    "type": "object"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "transactionHash": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                },
-                "walletId": {
-                    "type": "string"
-                }
-            }
-        },
         "inter.UserController": {
             "type": "object",
             "properties": {
@@ -1453,6 +898,14 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+        },
+        "receivable.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -1469,10 +922,10 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "52.15.128.117:8080",
+	Host:             "3.145.127.73:8080",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Fidz",
+	Title:            "Brasa",
 	Description:      "This is a server for app.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

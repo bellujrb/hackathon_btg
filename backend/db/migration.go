@@ -38,23 +38,23 @@ type Token struct {
 }
 
 type Receivable struct {
-	ID                   uint    `gorm:"primaryKey" json:"id"`
-	EmpresaNome          string  `json:"empresa_nome"`
-	EmpresaCNPJ          string  `json:"empresa_cnpj"`
-	EmpresaEndereco      string  `json:"empresa_endereco"`
-	EmpresaTelefone      string  `json:"empresa_telefone"`
-	EmpresaEmail         string  `json:"empresa_email"`
-	DevedorNome          string  `json:"devedor_nome"`
-	DevedorCNPJ          string  `json:"devedor_cnpj"`
-	Valor                float64 `json:"valor"`
-	DataEmissaoTitulo    string  `json:"data_emissao_titulo"`
-	DataVencimentoTitulo string  `json:"data_vencimento_titulo"`
-	Garantias            string  `json:"garantias"`
-	DescontoAntecipacao  float64 `json:"desconto_antecipacao"`
-	Banco                string  `json:"banco"`
-	Agencia              string  `json:"agencia"`
-	ContaCorrente        string  `json:"conta_corrente"`
-	ChavePix             string  `json:"chave_pix"`
+	ID                   uint      `gorm:"primaryKey" json:"id"`
+	EmpresaNome          string    `json:"empresa_nome"`
+	EmpresaCNPJ          string    `json:"empresa_cnpj"`
+	EmpresaEndereco      string    `json:"empresa_endereco"`
+	EmpresaTelefone      string    `json:"empresa_telefone"`
+	EmpresaEmail         string    `json:"empresa_email"`
+	DevedorNome          string    `json:"devedor_nome"`
+	DevedorCNPJ          string    `json:"devedor_cnpj"`
+	Valor                float64   `json:"valor"`
+	DataEmissaoTitulo    time.Time `json:"data_emissao_titulo"`
+	DataVencimentoTitulo time.Time `json:"data_vencimento_titulo"`
+	Garantias            string    `json:"garantias"`
+	DescontoAntecipacao  float64   `json:"desconto_antecipacao"`
+	Banco                string    `json:"banco"`
+	Agencia              string    `json:"agencia"`
+	ContaCorrente        string    `json:"conta_corrente"`
+	ChavePix             string    `json:"chave_pix"`
 }
 
 type Contract struct {

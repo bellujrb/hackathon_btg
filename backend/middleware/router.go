@@ -25,13 +25,9 @@ func SetupRouter() *gin.Engine {
 	r.Use(ResponseHandler())
 
 	//Use response, but not Token
-	r.GET("/token", generateTokenHandler)
-	r.PUT("/login", LoginUser)
 	r.POST("/create-user", user.CreateUser)
 
 	auth := r.Group("/api")
-
-	auth.Use(authMiddleware)
 
 	//Response and token service
 
@@ -51,6 +47,8 @@ func SetupRouter() *gin.Engine {
 	auth.POST("/receivables", receivable.CreateReceivable)
 	auth.GET("/receivables/:id", receivable.GetReceivableByID)
 	auth.GET("/receivables", receivable.GetAllReceivables)
+	auth.PUT("/receivables/:id/payment_date", receivable.UpdatePaymentDate)
+	auth.GET("/receivables/:id/early_payment", receivable.GetEarlyPaymentOptions)
 
 	return r
 }

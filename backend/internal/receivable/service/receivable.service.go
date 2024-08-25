@@ -100,3 +100,32 @@ func DebtorPaymentAndDistribution(c *gin.Context, contractID string, paymentAmou
 
 	c.JSON(http.StatusOK, gin.H{"message": "Payment successfully processed and distribution completed"})
 }
+
+func UpdatePaymentDate(id string, newPaymentDate string) error {
+	var receivable db.Receivable
+	if err := db.Repo.First(&receivable, id).Error; err != nil {
+		return err
+	}
+
+	parsedDate, err := time.Parse("2006-01-02", newPaymentDate)
+	if err != nil {
+		return err
+	}
+
+	receivable.DataVencimentoTitulo = parsedDate
+	return db.Repo.Save(&receivable).Error
+}
+func GetEarlyPaymentOptions(id string) (map[string]interface{}, error) {
+	var receivable db.Receivable
+	if err := db.Repo.First(&receivable, id).Error; err != nil {
+		return nil, err
+	}
+
+	options := map[string]interface{}{
+		"early_payment_available": true,
+		"discount_rate":           5.0,
+		"final_amount_due":        receivable.Valor - (receivable.Valor * 0.05),
+	}
+
+	return options, nil
+}

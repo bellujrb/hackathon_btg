@@ -21,6 +21,43 @@ definitions:
     properties:
       Response: {}
     type: object
+  db.Receivable:
+    properties:
+      agencia:
+        type: string
+      banco:
+        type: string
+      chave_pix:
+        type: string
+      conta_corrente:
+        type: string
+      data_emissao_titulo:
+        type: string
+      data_vencimento_titulo:
+        type: string
+      desconto_antecipacao:
+        type: number
+      devedor_cnpj:
+        type: string
+      devedor_nome:
+        type: string
+      empresa_cnpj:
+        type: string
+      empresa_email:
+        type: string
+      empresa_endereco:
+        type: string
+      empresa_nome:
+        type: string
+      empresa_telefone:
+        type: string
+      garantias:
+        type: string
+      id:
+        type: integer
+      valor:
+        type: number
+    type: object
   erros.InternalServerError:
     properties:
       BaseReq:
@@ -77,72 +114,26 @@ definitions:
       updatedAt:
         type: string
     type: object
-  inter.CreateCompanyController:
-    properties:
-      URI:
-        type: integer
-      cnpj:
-        type: string
-      name:
-        type: string
-      urlImage:
-        type: string
-    type: object
-  inter.CreateItemController:
-    properties:
-      URI:
-        type: integer
-      company:
-        type: string
-      name:
-        type: string
-      price:
-        type: number
-      urlImage:
-        type: string
-    type: object
   inter.DeployController:
     properties:
       contractId:
         type: string
     type: object
-  inter.Gimmetoken:
-    properties:
-      contractID:
-        type: string
-      quantity:
-        type: integer
-      uriNumber:
-        type: integer
-      walletID:
-        type: string
-    type: object
-  inter.MktItemOutput:
-    properties:
-      company:
-        type: string
-      create_at:
-        type: string
-      id:
-        type: integer
-      name:
-        type: string
-      price:
-        type: number
-      update_at:
-        type: string
-      uri:
-        type: integer
-      urlImage:
-        type: string
-    type: object
-  inter.MktItemsOutput:
-    type: object
   inter.TokenCreateInput:
     properties:
+      assetId:
+        description: Adicionado AssetID
+        type: string
+      assetValue:
+        type: number
       contractId:
         type: string
       description:
+        type: string
+      expireDate:
+        type: string
+      guarantees:
+        description: Adicionado Guarantees
         type: string
       imageUrl:
         type: string
@@ -150,6 +141,9 @@ definitions:
         type: integer
       name:
         type: string
+      nominalValue:
+        description: Adicionado NominalValue
+        type: number
       traits:
         additionalProperties:
           type: string
@@ -184,86 +178,6 @@ definitions:
       uriNumber:
         type: integer
     type: object
-  inter.Trade:
-    properties:
-      transaction1:
-        $ref: '#/definitions/inter.Transaction'
-      transaction2:
-        $ref: '#/definitions/inter.Transaction'
-    type: object
-  inter.Transaction:
-    properties:
-      contractId:
-        type: string
-      from:
-        type: string
-      quantity:
-        type: integer
-      to:
-        type: string
-    type: object
-  inter.TransactionRes:
-    properties:
-      completedAt:
-        type: string
-      createdAt:
-        type: string
-      id:
-        type: string
-      request:
-        properties:
-          contractId:
-            type: string
-          quantity:
-            type: integer
-        type: object
-      result:
-        additionalProperties:
-          type: string
-        type: object
-      status:
-        type: string
-      transactionHash:
-        type: string
-      type:
-        type: string
-      updatedAt:
-        type: string
-      walletId:
-        type: string
-    type: object
-  inter.TransferOutput:
-    properties:
-      completedAt:
-        type: string
-      createdAt:
-        type: string
-      id:
-        type: string
-      request:
-        properties:
-          contractId:
-            type: string
-          from:
-            type: string
-          quantity:
-            type: integer
-          to:
-            type: string
-        type: object
-      result:
-        type: object
-      status:
-        type: string
-      transactionHash:
-        type: string
-      type:
-        type: string
-      updatedAt:
-        type: string
-      walletId:
-        type: string
-    type: object
   inter.UserController:
     properties:
       email:
@@ -284,54 +198,26 @@ definitions:
       updatedAt:
         type: string
     type: object
+  receivable.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: 52.15.128.117:8080
+host: 3.145.127.73:8080
 info:
   contact: {}
   description: This is a server for app.
-  title: Fidz
+  title: Brasa
   version: "1.0"
 paths:
-  /api/all-company:
-    get:
-      consumes:
-      - application/json
-      description: Get all company register in db
-      parameters:
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: One item for a company
-          schema:
-            $ref: '#/definitions/inter.MktItemOutput'
-        "500":
-          description: Unable to make deploy
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Get all company
-      tags:
-      - Mkt
   /api/all-contract:
     get:
       consumes:
       - application/json
       description: Get All contracts
-      parameters:
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -346,37 +232,6 @@ paths:
       summary: Get All contracts
       tags:
       - Contract
-  /api/all-items:
-    get:
-      consumes:
-      - application/json
-      description: Get all items for one company
-      parameters:
-      - description: Company name
-        in: header
-        name: Company
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: All items for one company
-          schema:
-            $ref: '#/definitions/inter.MktItemsOutput'
-        "500":
-          description: Unable to make deploy
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Get All Items
-      tags:
-      - Mkt
   /api/all-token:
     get:
       consumes:
@@ -386,12 +241,6 @@ paths:
       - description: contract id
         in: header
         name: ContractId
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
         required: true
         type: string
       produces:
@@ -419,12 +268,6 @@ paths:
         name: ContractId
         required: true
         type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -439,69 +282,6 @@ paths:
       summary: Pull a contract
       tags:
       - Contract
-  /api/converter-token:
-    get:
-      consumes:
-      - application/json
-      description: Converter tokens for money or another tokens
-      parameters:
-      - description: Your tokens
-        in: header
-        name: Token
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: New User Created successfully
-          schema:
-            $ref: '#/definitions/inter.AllTokensOutput'
-        "500":
-          description: Unable to store data in database
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Converter tokens
-      tags:
-      - Token
-  /api/create-company:
-    post:
-      consumes:
-      - application/json
-      description: Create a new Company
-      parameters:
-      - description: Data for make a new Company
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/inter.CreateCompanyController'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: New Company Created successfully
-          schema:
-            $ref: '#/definitions/inter.UserOutputController'
-        "500":
-          description: Error for make a new Company
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Create Company
-      tags:
-      - Mkt
   /api/create-contract:
     post:
       consumes:
@@ -514,12 +294,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/inter.ContractController'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -546,12 +320,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/inter.TokenCreateInput'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -578,12 +346,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/inter.DeployController'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -598,40 +360,6 @@ paths:
       summary: Deploy new contract
       tags:
       - Contract
-  /api/gain-tokens:
-    post:
-      consumes:
-      - application/json
-      description: This would be implemented as the application remains open. RoadMap
-        is mocked, and this randomly generates a number, and gives an FDZ that can
-        be 0.000001 or 1
-      parameters:
-      - description: Data for gain tokens :)
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/inter.Gimmetoken'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Your tokens is be send for your account
-          schema:
-            $ref: '#/definitions/inter.TransactionRes'
-        "500":
-          description: Unable to store data in database
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Gain token
-      tags:
-      - Token
   /api/get-token:
     get:
       consumes:
@@ -646,12 +374,6 @@ paths:
       - description: Its a uri content in tokens
         in: header
         name: UriToken
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
         required: true
         type: string
       produces:
@@ -679,12 +401,6 @@ paths:
         name: Email
         required: true
         type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -699,137 +415,6 @@ paths:
       summary: Loggout User
       tags:
       - User
-  /api/make-trade:
-    post:
-      consumes:
-      - application/json
-      description: Create a transfer from a user to a new token
-      parameters:
-      - description: Data for make a new user
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/inter.Trade'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: New User Created successfully
-          schema:
-            $ref: '#/definitions/inter.UserOutputController'
-        "500":
-          description: Unable to store data in database
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Make a Trade
-      tags:
-      - Token
-  /api/make-transfer:
-    post:
-      consumes:
-      - application/json
-      description: Create a transfer from a user to a user
-      parameters:
-      - description: Data for make a new user
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/inter.Transaction'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: Transfer is by sucessfull
-          schema:
-            $ref: '#/definitions/inter.TransferOutput'
-        "500":
-          description: Unable to store data in database
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Make a transfer
-      tags:
-      - Token
-  /api/one-company:
-    get:
-      consumes:
-      - application/json
-      description: Deploy new contract in the blockchain
-      parameters:
-      - description: Company name
-        in: header
-        name: Company
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: One item for a company
-          schema:
-            $ref: '#/definitions/inter.MktItemOutput'
-        "500":
-          description: Unable to make deploy
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Get one company
-      tags:
-      - Mkt
-  /api/one-item:
-    get:
-      consumes:
-      - application/json
-      description: Deploy new contract in the blockchain
-      parameters:
-      - description: Company name
-        in: header
-        name: Company
-        required: true
-        type: string
-      - description: Item name
-        in: header
-        name: ItemName
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: One item for a company
-          schema:
-            $ref: '#/definitions/inter.MktItemOutput'
-        "500":
-          description: Unable to make deploy
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Get one item
-      tags:
-      - Mkt
   /api/user:
     get:
       consumes:
@@ -839,12 +424,6 @@ paths:
       - description: E-mail from user
         in: header
         name: Email
-        required: true
-        type: string
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
         required: true
         type: string
       produces:
@@ -861,38 +440,6 @@ paths:
       summary: Get user
       tags:
       - User
-  /create-item:
-    post:
-      consumes:
-      - application/json
-      description: Create a new item in db
-      parameters:
-      - description: Data for make a new item
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/inter.CreateItemController'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: New item Created successfully
-          schema:
-            $ref: '#/definitions/inter.MktItemsOutput'
-        "500":
-          description: Unable to store data in database
-          schema:
-            $ref: '#/definitions/erros.InternalServerError'
-      summary: Create item
-      tags:
-      - Mkt
   /create-user:
     post:
       consumes:
@@ -905,12 +452,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/inter.UserController'
-      - default: Bearer <token>
-        description: Token de autenticação (Colocar o token deixando o Bearer)
-        in: header
-        name: Authorization
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -925,46 +466,133 @@ paths:
       summary: Create user
       tags:
       - User
-  /login:
-    put:
+  /receivables:
+    get:
       consumes:
       - application/json
-      description: Login user and give a acess token
+      description: Returns all registered receivables
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/db.Receivable'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/receivable.ErrorResponse'
+      summary: Get all receivables
+      tags:
+      - Receivable
+    post:
+      consumes:
+      - application/json
+      description: Creates a new receivable from the provided data
       parameters:
-      - description: E-mail from user
-        in: header
-        name: Email
+      - description: Receivable data
+        in: body
+        name: receivable
+        required: true
+        schema:
+          $ref: '#/definitions/db.Receivable'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/db.Receivable'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/receivable.ErrorResponse'
+      summary: Creates a new receivable
+      tags:
+      - Receivable
+  /receivables/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Fetches a receivable by its ID
+      parameters:
+      - description: Receivable ID
+        in: path
+        name: id
         required: true
         type: string
       produces:
       - application/json
       responses:
         "200":
-          description: 'token make:'
+          description: OK
           schema:
-            type: string
-        "500":
-          description: User not found in db
+            $ref: '#/definitions/db.Receivable'
+        "404":
+          description: Not Found
           schema:
-            type: string
-      summary: Login User
+            $ref: '#/definitions/receivable.ErrorResponse'
+      summary: Get a receivable by ID
       tags:
-      - User
-  /token:
+      - Receivable
+  /receivables/{id}/early_payment:
     get:
       consumes:
       - application/json
-      description: Creat a token for external apis
+      description: Returns options for anticipating the receivable's payment
+      parameters:
+      - description: Receivable ID
+        in: path
+        name: id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
         "200":
-          description: 'token make:'
+          description: OK
           schema:
-            type: string
-      summary: Creat a token for apis
+            $ref: '#/definitions/db.Receivable'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/receivable.ErrorResponse'
+      summary: Fetches early payment options for a receivable
       tags:
-      - Auth
+      - Receivable
+  /receivables/{id}/payment_date:
+    put:
+      consumes:
+      - application/json
+      description: Changes the payment date of the given receivable
+      parameters:
+      - description: Receivable ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: New Payment Date
+        in: body
+        name: payment_date
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/db.Receivable'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/receivable.ErrorResponse'
+      summary: Updates the payment date of a receivable
+      tags:
+      - Receivable
 securityDefinitions:
   BasicAuth:
     type: basic
