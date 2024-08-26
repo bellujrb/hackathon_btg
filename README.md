@@ -16,7 +16,7 @@
 
 ---
 
-> _Swagger API Documentation: 
+> _Swagger API Documentation: http://3.145.127.73:8080/swagger/index.html
 
 > _Documentation Support PROJECT: https://docs.google.com/document/d/1bt-J4_PgYU0QeHE7YkwjSSsxyMBUdjcQHUlGB8EV_UI/edit?usp=sharing
 > 
