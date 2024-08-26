@@ -22,7 +22,7 @@
 > 
 > _Prototyping: https://www.figma.com/design/imspxcdxenZWKVmady3MPz/BrasaHacks---UI%2FUX?node-id=37-770&t=029wiMmdBkYynDVu-1
 
-> _Video Demo Application and API:
+> _Video Demo Application and API: https://www.youtube.com/watch?v=rjpNN5GTxJE
 
 ---
 
