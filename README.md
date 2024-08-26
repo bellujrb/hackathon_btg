@@ -30,6 +30,91 @@
 
 A LUMQI tokenizes receivables using the Polygon blockchain and integrates 100% with the Lumx API, which manages all blockchain operations in the backend. Our goal is to democratize access to the capital markets by simplifying investments in tokenized receivables.
 
+## Fluxos
+
+<details>
+<summary>🔍 Fluxo do Investidor</summary>
+
+1. **Bot no WhatsApp**
+   - O investidor inicia o contato via WhatsApp para verificar e interagir com os ativos.
+   
+2. **Ver Ativos Disponíveis**
+   - O bot exibe os ativos que estão disponíveis para compra.
+
+3. **Comprar Ativo**
+   - O investidor decide comprar um dos ativos listados.
+
+4. **Ver Informações do Ativo**
+   - O investidor acessa mais informações detalhadas sobre o ativo comprado.
+
+5. **Rentabilidade**
+   - O investidor visualiza a rentabilidade esperada do ativo.
+
+6. **Receba em X Vezes**
+   - O sistema mostra em quantas parcelas o investidor receberá o retorno.
+
+7. **Equivalência**
+   - Comparação de equivalência com outros indicadores.
+
+8. **Comparado ao CDI**
+   - Rentabilidade do ativo comparada ao CDI (Certificado de Depósito Interbancário).
+
+9. **Ver Smart Contract**
+   - O investidor pode acessar o contrato inteligente do ativo.
+
+10. **Valor da Captação**
+    - Informação sobre o valor total captado para esse ativo.
+
+11. **Tokens Emitidos**
+    - Detalhes sobre a quantidade de tokens emitidos para o ativo.
+</details>
+
+<details>
+<summary>📊 Fluxo da Empresa</summary>
+
+1. **Dashboard**
+   - A empresa acessa um painel de controle para gerenciar os ativos.
+   
+2. **Criar Ativo**
+   - A empresa pode criar um novo ativo para ser tokenizado.
+
+3. **Forms**
+   - Preencher formulários para o registro do ativo.
+
+4. **Visualizar Ativos/Estatísticas**
+   - A empresa visualiza todos os ativos e suas estatísticas.
+
+5. **Actions do Ativo**
+   - A empresa pode realizar ações nos ativos, como antecipar recebimento ou editar vencimento.
+
+6. **Editar Vencimento**
+   - A empresa edita datas de vencimento e outras ações relacionadas ao ativo.
+</details>
+
+<details>
+<summary>📈 Fluxo do Analista</summary>
+
+1. **Ver Ativos Pendentes**
+   - O analista visualiza os ativos que estão pendentes de aprovação.
+
+2. **Ver Detalhes do Ativo**
+   - O analista acessa detalhes completos dos ativos para tomar uma decisão.
+
+3. **Aprovar + Forms**
+   - O analista aprova o ativo e preenche os formulários necessários.
+
+4. **Análise Preditiva**
+   - Análise preditiva para ajudar o analista.
+
+5. **Probabilidade de Aprovação**
+   - Sistema calcula a probabilidade de chances do ativo ser aprovado.
+
+6. **Indicador de Riscos**
+   - O sistema fornece um indicador de risco associado ao ativo.
+
+7. **Insights**
+   - Insights são gerados a partir da análise para guiar a decisão do analista.
+</details>
 
 ## Application Programming Interface Lumx
 
