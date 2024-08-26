@@ -72,7 +72,7 @@ class _TokenApprovalScreenState extends State<TokenApprovalScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Aprovação de Token", style: GoogleFonts.poppins()),
+                Text("Aprovação de Token", style: GoogleFonts.poppins(textStyle: context.appTextStyles.smallBlack)),
                 const SizedBox(height: 20),
                 Text("Configuração do Token", style: GoogleFonts.poppins()),
                 const SizedBox(height: 20),

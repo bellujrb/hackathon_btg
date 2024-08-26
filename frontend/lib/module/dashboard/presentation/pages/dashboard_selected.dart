@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:frontend/core/styles/colors.dart';
 import 'package:frontend/core/styles/text_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -128,7 +129,6 @@ class _DashboardSelectedState extends State<DashboardSelected> {
                     const SizedBox(
                       height: 20,
                     ),
-                    // Gráficos em caixas
                     Text(
                       "Análise Preditiva",
                       style: GoogleFonts.poppins(
@@ -250,7 +250,7 @@ class _DashboardSelectedState extends State<DashboardSelected> {
       child: Container(
         decoration: BoxDecoration(
             color: (isSelected || isHovered)
-                ? Colors.blueAccent
+                ? AppColors.primary
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(16)),
         padding: const EdgeInsets.symmetric(vertical: 8.0),

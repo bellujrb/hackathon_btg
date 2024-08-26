@@ -54,20 +54,14 @@ class _TokenApprovalTwoScreenState extends State<TokenApprovalTwoScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Aprovação de Token",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: GoogleFonts.poppins(textStyle: context.appTextStyles.smallBlack)
                 ),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "Comentários e Observações",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: GoogleFonts.poppins()
                 ),
                 const SizedBox(height: 20),
                 _buildTextField(
@@ -124,9 +118,7 @@ class _TokenApprovalTwoScreenState extends State<TokenApprovalTwoScreen> {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-          ),
+          style: GoogleFonts.poppins()
         ),
         const SizedBox(height: 10),
         TextFormField(
